@@ -1,95 +1,50 @@
-import Image from "next/image";
-import styles from "./page.module.css";
+import { Container, Typography } from '@mui/material';
+import HeroInfoSesh from '@/assets/notgpl/info-session.jpg';
+import HeroTeam from '@/assets/notgpl/team.jpg';
+import { HomepageHero } from '@/components/client/HomePageHero/HomePageHero';
 
-export default function Home() {
-  return (
-    <main className={styles.main}>
-      <div className={styles.description}>
-        <p>
-          Get started by editing&nbsp;
-          <code className={styles.code}>src/app/page.tsx</code>
-        </p>
-        <div>
-          <a
-            href="https://vercel.com?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            By{" "}
-            <Image
-              src="/vercel.svg"
-              alt="Vercel Logo"
-              className={styles.vercelLogo}
-              width={100}
-              height={24}
-              priority
-            />
-          </a>
-        </div>
-      </div>
+export const metadata = {
+	title: 'Home - GDSC UTM',
+};
 
-      <div className={styles.center}>
-        <Image
-          className={styles.logo}
-          src="/next.svg"
-          alt="Next.js Logo"
-          width={180}
-          height={37}
-          priority
-        />
-      </div>
+const Homepage = async () => {
+	return (
+		<main id="home">
+			{/* hero */}
+			<HomepageHero />
 
-      <div className={styles.grid}>
-        <a
-          href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className={styles.card}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2>
-            Docs <span>-&gt;</span>
-          </h2>
-          <p>Find in-depth information about Next.js features and API.</p>
-        </a>
+			{/* upcoming events */}
+			<section id="upcoming-events">
+				<Container sx={{ py: 8 }} maxWidth="md">
+					<Typography color="text.primary" component="h2" fontWeight="bold" lineHeight="2.5em" variant="h4">
+						Upcoming Events
+					</Typography>
+				</Container>
+			</section>
 
-        <a
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className={styles.card}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2>
-            Learn <span>-&gt;</span>
-          </h2>
-          <p>Learn about Next.js in an interactive course with&nbsp;quizzes!</p>
-        </a>
+			{/* about / who are we */}
+			<section id="who-are-we">
+				<Container sx={{ py: 8, lineHeight: '2em' }} maxWidth="md">
+					<p>
+						<dfn id="gsdc-defn">Google Developer Student Clubs</dfn> (<abbr>GDSC</abbr>) is a student-led
+						community backed by Google Developers aimed at empowering undergraduate students from all
+						disciplines to grow their knowledge in technology, build solutions for their local communities,
+						and connect with other members from the Google community.
+					</p>
+					<h3>Creating impact and empowering students through technology</h3>
+					<p>
+						Whether you are new to software development or you&rsquo;ve been developing for quite a while,
+						GDSC is a place where you can learn new technologies, make your ideas a reality, and collaborate
+						to solve real-world problems. In  addition to solving problems, GDSC will allow you to connect
+						with other technology enthusiasts from other GDSC chapters and the Google Developer Community.
+						We will be hosting events and activities for all students throughout the academic year. We hope
+						to see you there!
+					</p>
+				</Container>
+			</section>
+			{/* team list */}
+		</main>
+	);
+};
 
-        <a
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className={styles.card}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2>
-            Templates <span>-&gt;</span>
-          </h2>
-          <p>Explore starter templates for Next.js.</p>
-        </a>
-
-        <a
-          href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className={styles.card}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2>
-            Deploy <span>-&gt;</span>
-          </h2>
-          <p>
-            Instantly deploy your Next.js site to a shareable URL with Vercel.
-          </p>
-        </a>
-      </div>
-    </main>
-  );
-}
+export default Homepage;
