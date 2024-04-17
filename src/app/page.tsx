@@ -1,17 +1,12 @@
 import { Container, Typography } from '@mui/material';
-import HeroInfoSesh from '@/assets/notgpl/info-session.jpg';
-import HeroTeam from '@/assets/notgpl/team.jpg';
-import { HomepageHero } from '@/components/client/HomePageHero/HomePageHero';
 
 export const metadata = {
-	title: 'Home - GDSC UTM',
+	title: 'Home - GDSC NJIT',
 };
 
 const Homepage = async () => {
 	return (
 		<main id="home">
-			{/* hero */}
-			<HomepageHero />
 
 			{/* upcoming events */}
 			<section id="upcoming-events">

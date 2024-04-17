@@ -1,125 +1,187 @@
-'use client'
+"use client";
 
-import NextLink from 'next/link';
-import { useState, useEffect } from 'react';
-import { AppBar, Box, ButtonGroup, Container, Fab, Tab, Tabs, Toolbar, useTheme } from '@mui/material';
+import * as React from "react";
+import AppBar from "@mui/material/AppBar";
+import Box from "@mui/material/Box";
+import Toolbar from "@mui/material/Toolbar";
+import IconButton from "@mui/material/IconButton";
+import Typography from "@mui/material/Typography";
+import Menu from "@mui/material/Menu";
+import MenuIcon from "@mui/icons-material/Menu";
+import Container from "@mui/material/Container";
+import Avatar from "@mui/material/Avatar";
+import Button from "@mui/material/Button";
+import Tooltip from "@mui/material/Tooltip";
+import MenuItem from "@mui/material/MenuItem";
+import AdbIcon from "@mui/icons-material/Adb";
+import { GitHub, Google, Instagram } from "@mui/icons-material";
+import Image from "next/image";
+import { DiscordIcon } from "@/assets/DiscordIcon";
 
-import bracket from '@/assets/graphics/bracket.svg';
-import bracketDark from '@/assets/graphics/bracket_colourless.svg';
-import { ElevationScroll, HideOnScroll } from './ElevationScroll';
-import { usePathname } from 'next/navigation';
+const pages = ["About", "Resources", "Projects", "Events"];
+const settings = ["Profile", "Account", "Dashboard", "Logout"];
 
-/**
- * Site navbar component. Contains the logo, social buttons, and navigation tabs.
- * Responsive: 1 row on mobile, 2 rows on desktop. The tabs scroll when there are too many to fit.
- * Navbar goes up and down on scroll.
- * @returns {JSX.Element} the navbar component
- */
 export const Navbar = () => {
-	
-	const pathname = usePathname();
+  const [anchorElNav, setAnchorElNav] = React.useState<null | HTMLElement>(
+    null
+  );
+  const [anchorElUser, setAnchorElUser] = React.useState<null | HTMLElement>(
+    null
+  );
 
-	// use only the first part of the path to determine the tab
-	// so that sub pages are also highlighted in the navbar
-	const [currentTab, setCurrentTab] = useState(pathname.toLowerCase().split('/')[1]);
+  const handleOpenNavMenu = (event: React.MouseEvent<HTMLElement>) => {
+    setAnchorElNav(event.currentTarget);
+  };
+  const handleOpenUserMenu = (event: React.MouseEvent<HTMLElement>) => {
+    setAnchorElUser(event.currentTarget);
+  };
 
-	useEffect(() => {
-		setCurrentTab(pathname.toLowerCase().split('/')[1]);
-	}, [pathname]);
+  const handleSocialClick = (e: React.MouseEvent<HTMLElement>) => {
+    console.log(e);
+  };
 
-	const theme = useTheme();
+  const handleCloseNavMenu = () => {
+    setAnchorElNav(null);
+  };
 
-	return (
-		<HideOnScroll>
-			<AppBar sx={{ bgcolor: 'transparent !important' }}>
-				<Container maxWidth="xl">
-					<Toolbar
-						disableGutters
-						sx={{
-							flexWrap: 'wrap',
-							minHeight: 'auto !important',
-							paddingTop: {
-								// since two-row version lacks top padding, add it here
-								xs: '1rem',
-								sm: '1rem',
-								md: '0',
-							},
-						}}
-					>
-						{/* gdsc button logo */}
-						<ElevationScroll>
-							<Fab
-								variant="extended"
-								aria-label="Home"
-								style={{
-									background: theme.palette.background.paper,
-									minHeight: '30px',
-									minWidth: '94px',
-								}}
-								href="/"
-								component={NextLink}
-								id="gdsc-home-btn"
-							>
-							</Fab>
-						</ElevationScroll>
+  const handleCloseUserMenu = () => {
+    setAnchorElUser(null);
+  };
 
-						{/* tab navigation */}
-						<Tabs
-							allowScrollButtonsMobile
-							aria-label="Main navigation"
-							component="nav"
-							id="main-nav"
-							TabIndicatorProps={{ children: <span className="MuiTabs-indicatorSpan" /> }}
-							value={currentTab}
-							variant="scrollable"
-							sx={{
-								'& .MuiTabs-flexContainer': {
-									display: 'block',
-								},
-								'& .MuiTabs-indicator': {
-									display: 'flex',
-									justifyContent: 'center',
-									backgroundColor: 'transparent',
-								},
-								'& .MuiTabs-indicatorSpan': {
-									maxWidth: 50,
-									width: '100%',
-									backgroundColor: theme.palette.primary.main,
-								},
-								'& .MuiTabs-scrollButtons.Mui-disabled': {
-									opacity: 0.3,
-								},
-								flexGrow: 1, // so that the arrows don't show up momentarily on page switch
-								[theme.breakpoints.down('md')]: {
-									'&': {
-										// responsive 2 row layout when used with the Navbar component
-										order: 3, // after social buttons
-										flexBasis: '100%', // take up row
-									},
-								},
-							}}
-						>
-						      <Tab label="Item One" value="1" />
-      <Tab label="Item Two" value="2" />
-      <Tab label="Item Three" value="3" />
-						</Tabs>
+  return (
+    <AppBar position="static">
+      <Container
+        maxWidth="xl"
+        sx={{
+          backgroundColor: "black",
+        }}
+      >
+        <Toolbar disableGutters>
 
-						{/* spacing */}
-						<Box sx={{ flexGrow: 1 }} />
+          {/* Desktop App Menu */}
+          <AdbIcon sx={{ display: { xs: "none", md: "flex" }, mr: 1 }} />
 
-						{/* social media icons */}
-						<ButtonGroup
-							sx={{
-								display: {
-									// xs: "none",
-									sm: 'flex',
-								},
-							}}
-						>
-						</ButtonGroup>
-					</Toolbar>
-				</Container>
-			</AppBar>
-		</HideOnScroll>
-	);
+          <Box sx={{ flexGrow: 1, display: { xs: "none", md: "flex" } }}>
+            {pages.map((page) => (
+              <Typography
+                key={page}
+                onClick={handleCloseNavMenu}
+                sx={{ mx: 2, color: "white", display: "block" }}
+              >
+                {page}
+              </Typography>
+            ))}
+          </Box>
+
+
+          {/* Mobile Hamburger  */}
+          <Box sx={{ flexGrow: 1, display: { xs: "flex", md: "none" } }}>
+            <IconButton
+              size="large"
+              aria-label="account of current user"
+              aria-controls="menu-appbar"
+              aria-haspopup="true"
+              onClick={handleOpenNavMenu}
+              color="inherit"
+            >
+              <MenuIcon />
+            </IconButton>
+            <Menu
+              id="menu-appbar"
+              anchorEl={anchorElNav}
+              anchorOrigin={{
+                vertical: "bottom",
+                horizontal: "left",
+              }}
+              keepMounted
+              transformOrigin={{
+                vertical: "top",
+                horizontal: "left",
+              }}
+              open={Boolean(anchorElNav)}
+              onClose={handleCloseNavMenu}
+              sx={{
+                display: { xs: "block", md: "none" },
+              }}
+            >
+              {pages.map((page) => (
+                <MenuItem key={page} onClick={handleCloseNavMenu}>
+                  <Typography textAlign="center">{page}</Typography>
+                </MenuItem>
+              ))}
+            </Menu>
+          </Box>
+
+          
+          <AdbIcon sx={{ display: { xs: "flex", md: "none" }, mr: 1 }} />
+          <Typography
+            noWrap
+            component="a"
+            href="#app-bar-with-responsive-menu"
+            sx={{
+              mr: 2,
+              display: { xs: "flex", md: "none" },
+              flexGrow: 1,
+              fontFamily: "monospace",
+              fontWeight: 600,
+              letterSpacing: ".3rem",
+              color: "inherit",
+              textDecoration: "none",
+            }}
+          >
+            GDSC NJIT
+          </Typography>
+
+
+          {/* Social Media Links Desktop */}
+          <Box sx={{ flexGrow: 0, display: { xs: "none", md: "flex" } }}>
+            <Tooltip title="Google">
+              <IconButton onClick={handleSocialClick} sx={{ p: 0, mx: 1.5, color: "white"}}>
+                  <Google />
+              </IconButton>
+            </Tooltip>
+            <Tooltip title="Instagram">
+              <IconButton onClick={handleSocialClick} sx={{ p: 0, mx: 1.5, color: "white"}}>
+                  <Instagram />
+              </IconButton>
+            </Tooltip>
+            <Tooltip title="GitHub">
+              <IconButton onClick={handleSocialClick} sx={{ p: 0, mx: 1.5, color: "white"}}>
+                  <GitHub />
+              </IconButton>
+            </Tooltip>
+            <Tooltip title="Discord">
+              <IconButton onClick={handleSocialClick} sx={{ p: 0, mx: 1.5, color: "white"}}>
+                <DiscordIcon />
+              </IconButton>
+            </Tooltip>
+          </Box>
+        </Toolbar>
+        <Toolbar sx={{ flexGrow: 0, display: { xs: "flex", md: "none", justifyContent: "center" } }}>
+        <Box>
+            <Tooltip title="Google">
+              <IconButton onClick={handleSocialClick} sx={{ p: 0, mx: 1.5, color: "white"}}>
+                  <Google sx={{fontSize: 20}} />
+              </IconButton>
+            </Tooltip>
+            <Tooltip title="Instagram">
+              <IconButton onClick={handleSocialClick} sx={{ p: 0, mx: 1.5, color: "white"}}>
+                  <Instagram sx={{fontSize: 20}} />
+              </IconButton>
+            </Tooltip>
+            <Tooltip title="GitHub">
+              <IconButton onClick={handleSocialClick} sx={{ p: 0, mx: 1.5, color: "white"}}>
+                  <GitHub sx={{fontSize: 20}} />
+              </IconButton>
+            </Tooltip>
+            <Tooltip title="Discord">
+              <IconButton onClick={handleSocialClick} sx={{ p: 0, mx: 1.5, color: "white"}}>
+                <DiscordIcon sx={{fontSize: 20}} />
+              </IconButton>
+            </Tooltip>
+          </Box>
+        </Toolbar>
+      </Container>
+    </AppBar>
+  );
 };

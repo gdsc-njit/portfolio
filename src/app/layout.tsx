@@ -1,10 +1,8 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
-import { ErrorBoundary } from "@/components/client/ErrorBoundary/ErrorBoundary";
 import { Navbar } from "@/components/client/Navbar/Navbar";
 import { Footer } from "@/components/client/Footer";
-import { ThemeRegistry } from '@/components/client/Theme/Registry';
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -23,10 +21,8 @@ export default function RootLayout({ children}: Readonly<{
 	return (
 		<html lang="en">
 			<body>
-        <ThemeRegistry>
 						<Navbar />
 						<Footer />
-            </ThemeRegistry>
 			</body>
 		</html>
 	);
