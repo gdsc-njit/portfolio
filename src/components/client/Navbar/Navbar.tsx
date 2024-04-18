@@ -1,6 +1,5 @@
-"use client";
+'use client'
 
-import * as React from "react";
 import AppBar from "@mui/material/AppBar";
 import Box from "@mui/material/Box";
 import Toolbar from "@mui/material/Toolbar";
@@ -14,18 +13,20 @@ import Button from "@mui/material/Button";
 import Tooltip from "@mui/material/Tooltip";
 import MenuItem from "@mui/material/MenuItem";
 import AdbIcon from "@mui/icons-material/Adb";
-import { GitHub, Google, Instagram } from "@mui/icons-material";
-import Image from "next/image";
-import { DiscordIcon } from "@/assets/DiscordIcon";
+import GitHub from "@mui/icons-material/GitHub";
+import Google from "@mui/icons-material/Google";
+import Instagram from "@mui/icons-material/Instagram";
+import DiscordIcon from "@/assets/DiscordIcon";
+import { useState } from "react";
 
 const pages = ["About", "Resources", "Projects", "Events"];
 const settings = ["Profile", "Account", "Dashboard", "Logout"];
 
-export const Navbar = () => {
-  const [anchorElNav, setAnchorElNav] = React.useState<null | HTMLElement>(
+const Navbar = () => {
+  const [anchorElNav, setAnchorElNav] = useState<null | HTMLElement>(
     null
   );
-  const [anchorElUser, setAnchorElUser] = React.useState<null | HTMLElement>(
+  const [anchorElUser, setAnchorElUser] = useState<null | HTMLElement>(
     null
   );
 
@@ -185,3 +186,5 @@ export const Navbar = () => {
     </AppBar>
   );
 };
+
+export default Navbar;

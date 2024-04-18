@@ -1,11 +1,15 @@
+'use client'
+
 import wordmark from '@/assets/graphics/gdsc-njit.svg';
-import { alpha, Box, Container, Typography } from '@mui/material';
-import { SkeletonLoadedImage } from '../SkeletonLoadedImage/SkeletonLoadedImage';
+import Box from '@mui/material/Box';
+import Container from '@mui/material/Container';
+import Typography from '@mui/material/Typography';
+import SkeletonLoadedImage from '../SkeletonLoadedImage/SkeletonLoadedImage';
 
 /**
  * @returns {JSX.Element} Hero header for the homepage.
  */
-export const HomepageHero = () => {
+const HomepageHero = () => {
 
 	return (
 		<section>
@@ -51,3 +55,5 @@ export const HomepageHero = () => {
 		</section>
 	);
 };
+
+export default HomepageHero;

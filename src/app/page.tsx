@@ -1,11 +1,12 @@
-import { HomepageHero } from '@/components/client/HomePageHero/HomePageHero';
-import { Container, Typography } from '@mui/material';
+import HomepageHero from '@/components/client/HomePageHero/HomePageHero';
+import Container from '@mui/material/Container';
+import Typography from '@mui/material/Typography';
 
 export const metadata = {
 	title: 'Home - GDSC NJIT',
 };
 
-const Homepage = async () => {
+const Home = async () => {
 	return (
 		<main id="home">
 			<HomepageHero />
@@ -20,7 +21,7 @@ const Homepage = async () => {
 
 			{/* about / who are we */}
 			<section id="who-are-we" style={{backgroundColor: 'black'}}>
-				<Container sx={{ py: 8, lineHeight: '2em', color: 'white' }} maxWidth="md">
+				<div style={{ padding: '0 8 0 8', lineHeight: '2em', color: 'white' }}>
 					<p>
 						<dfn id="gsdc-defn">Google Developer Student Clubs</dfn> (<abbr>GDSC</abbr>) is a student-led
 						community backed by Google Developers aimed at empowering undergraduate students from all
@@ -36,11 +37,11 @@ const Homepage = async () => {
 						We will be hosting events and activities for all students throughout the academic year. We hope
 						to see you there!
 					</p>
-				</Container>
+				</div>
 			</section>
 			{/* team list */}
 		</main>
 	);
 };
 
-export default Homepage;
+export default Home;

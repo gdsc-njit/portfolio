@@ -1,11 +1,11 @@
 'use client'
 
-import { ListItem, makeStyles } from "@mui/material";
+import ListItem from "@mui/material/ListItem";
+import Container from "@mui/material/Container";
+import Grid from "@mui/material/Grid";
 
-import { Container, Grid, Typography } from "@mui/material";
 
-
-export const Footer = () => {
+const Footer = () => {
   return (
     <footer>
       <Container maxWidth="lg">
@@ -21,3 +21,5 @@ export const Footer = () => {
     </footer>
   );
 };
+
+export default Footer;
