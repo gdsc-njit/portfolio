@@ -1,3 +1,4 @@
+import { HomepageHero } from '@/components/client/HomePageHero/HomePageHero';
 import { Container, Typography } from '@mui/material';
 
 export const metadata = {
@@ -7,19 +8,19 @@ export const metadata = {
 const Homepage = async () => {
 	return (
 		<main id="home">
-
+			<HomepageHero />
 			{/* upcoming events */}
-			<section id="upcoming-events">
-				<Container sx={{ py: 8 }} maxWidth="md">
-					<Typography color="text.primary" component="h2" fontWeight="bold" lineHeight="2.5em" variant="h4">
+			<section id="upcoming-events" style={{backgroundColor: 'black'}}>
+				<Container sx={{ flex:1, py: 8}} maxWidth="md">
+					<Typography color="white" component="h2" fontWeight="bold" lineHeight="1.5em" variant="h4">
 						Upcoming Events
 					</Typography>
 				</Container>
 			</section>
 
 			{/* about / who are we */}
-			<section id="who-are-we">
-				<Container sx={{ py: 8, lineHeight: '2em' }} maxWidth="md">
+			<section id="who-are-we" style={{backgroundColor: 'black'}}>
+				<Container sx={{ py: 8, lineHeight: '2em', color: 'white' }} maxWidth="md">
 					<p>
 						<dfn id="gsdc-defn">Google Developer Student Clubs</dfn> (<abbr>GDSC</abbr>) is a student-led
 						community backed by Google Developers aimed at empowering undergraduate students from all

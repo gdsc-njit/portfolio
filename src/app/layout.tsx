@@ -22,6 +22,7 @@ export default function RootLayout({ children}: Readonly<{
 		<html lang="en">
 			<body>
 						<Navbar />
+						{children}
 						<Footer />
 			</body>
 		</html>
